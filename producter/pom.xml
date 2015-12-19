@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>com-hh</artifactId>
+        <groupId>dubboDemo</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>producter</artifactId>
+    <packaging>war</packaging>
+    <name>producter Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <pro.outerDirectory>src/main/webapp</pro.outerDirectory>
+    </properties>
+    <dependencies>
+
+    </dependencies>
+    <build>
+        <finalName>producter</finalName>
+        <!--解决tomcat运行时不能再lib包中导入依赖的jar文件-->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <outputDirectory>${pro.outerDirectory}/WEB-INF/lib</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
