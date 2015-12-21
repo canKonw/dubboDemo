@@ -14,8 +14,8 @@ public class Customer {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"classpath:dubbo/dubbo-config.xml" });
         context.start();
         ProducterDemo producterDemo = context.getBean("demoService", ProducterDemo.class);
-       for (int i = 0;i <= 10;i++){
-           String str = producterDemo.saySomeThing("想你发送了参数："+i);
+       for (int i = 0;i <= 1;i++){
+           String str = producterDemo.saySomeThing("向你发送了参数："+i);
            System.out.println("--------:"+str);
            Thread.sleep(2000);
        }
