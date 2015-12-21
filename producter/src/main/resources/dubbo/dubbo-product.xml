@@ -12,5 +12,8 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd"
        default-lazy-init="false" >
     <!--要暴露的接口-->
-    <dubbo:service id="demoService" interface="com.hh.service.ProducterDemo" ref="producterDemo"/>
+    <dubbo:service id="demoService" interface="com.hh.service.ProducterDemo" ref="producterDemo" />
+    <!--当一个接口有多种实现时，可以用group区分。-->
+    <dubbo:service interface="com.hh.service.InterfaceTest" group="testOne" ref="groupTestOne"></dubbo:service>
+    <dubbo:service interface="com.hh.service.InterfaceTest" group="testTwo" ref="groupTestTwo"></dubbo:service>
  </beans>

@@ -10,6 +10,14 @@
     <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
     <dubbo:application name="consumer-of-helloworld-app" />       <!-- 使用multicast广播注册中心暴露发现服务地址 -->
     <dubbo:registry  protocol="zookeeper"  address="zookeeper://127.0.0.1:2181" />         <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
-    <dubbo:reference id="demoService" interface="com.hh.service.ProducterDemo" />
+
+    <!--check="true" 启动时自动检查引用是否可用，否则会报错-->
+    <!--init="true" 饥饿加载-->
+    <!--cluster="failfast" 失败策略  具体参数参考官方文档-->
+    <!--loadbalance="roundrobin" 负载均衡 具体参数参考官方文档-->
+    <dubbo:reference id="demoService" interface="com.hh.service.ProducterDemo" check="false"
+                     timeout="1000" init="true" cluster="failfast" loadbalance="roundrobin"
+            />
+    <dubbo:reference id="testOneIndex" interface="com.hh.service.InterfaceTest" group="testOne"></dubbo:reference>
 
 </beans>
